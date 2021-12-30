@@ -21,6 +21,61 @@
   <ItemGroup>
     <Compile Include="Product.wxs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="InformationVariables.wxi" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PdfMerger\PdfMerger.csproj">
+      <Name>PdfMerger</Name>
+      <Project>{cb53dd23-f57b-457d-8417-48bd83605250}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixVSExtension">
+      <HintPath>$(WixExtDir)\WixVSExtension.dll</HintPath>
+      <Name>WixVSExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixNetFxExtension">
+      <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
+      <Name>WixNetFxExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixMsmqExtension">
+      <HintPath>$(WixExtDir)\WixMsmqExtension.dll</HintPath>
+      <Name>WixMsmqExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixIIsExtension">
+      <HintPath>$(WixExtDir)\WixIIsExtension.dll</HintPath>
+      <Name>WixIIsExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixHttpExtension">
+      <HintPath>$(WixExtDir)\WixHttpExtension.dll</HintPath>
+      <Name>WixHttpExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixFirewallExtension">
+      <HintPath>$(WixExtDir)\WixFirewallExtension.dll</HintPath>
+      <Name>WixFirewallExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixDirectXExtension">
+      <HintPath>$(WixExtDir)\WixDirectXExtension.dll</HintPath>
+      <Name>WixDirectXExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixDependencyExtension">
+      <HintPath>$(WixExtDir)\WixDependencyExtension.dll</HintPath>
+      <Name>WixDependencyExtension</Name>
+    </WixExtension>
+  </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
   <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">

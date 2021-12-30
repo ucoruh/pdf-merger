@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include>
+  <?define CompanyName="ucoruh" ?>
+  <?define VersionNumber="1.0.0"?>
+  <?define ProductName="pdfmerger"?>
+  <?define SourceFolder="..\PdfMerger\bin\"?>
+  
+  <?if $(var.Configuration) = Release ?>
+  <?define ProductID = "60e5df88-095b-4359-884c-39b7b329d9d8"?>
+  <?define UpgradeCode = "efe25c54-ff47-46be-8389-082cf73e8f82"?>
+  <?define AppComponentsGuid = "7639e909-c471-4500-a543-6df1c6e0d9b4"?>
+  <?define AppResourcesGuid ="47644420-7f6c-4d20-8bcc-536f48ae0915"?>
+  <?define AppShortcutGuid = "739f876b-cd94-419c-84a8-02fbd5231ec0"?>
+  <?define AppShortcutDesktopGuid = "e11ff236-cf76-4422-af5d-65d655b7e3df"?>
+  <?else?>
+  <?define ProductID = "c263f054-8ae1-4083-b788-c6c3ba37fa5f"?>
+  <?define UpgradeCode = "b6605c80-021e-47d3-9497-c9bebfbd4a33"?>
+  <?define AppComponentsGuid = "f6a415fe-71a8-4e27-9383-4d0884aaa606"?>
+  <?define AppResourcesGuid = "920fa238-9d46-4e25-8125-0d127e608fe7"?>
+  <?define AppShortcutGuid = "b35c1e14-9728-4a88-9e8e-eb9d5dd992c3"?>
+  <?define AppShortcutDesktopGuid = "6217f094-d3b0-4b08-b451-33ee188fc0bb"?>
+  <?endif ?>
+
+</Include>

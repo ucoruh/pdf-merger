@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
 
@@ -304,6 +305,21 @@ namespace PDF571
 
             PdfDocument outputMergedDocument = new PdfDocument();
 
+
+            PdfPage page = outputMergedDocument.AddPage();
+
+            // Get an XGraphics object for drawing
+            XGraphics gfx = XGraphics.FromPdfPage(page);
+
+            // Create a font
+            XFont font = new XFont("Arial", 50, XFontStyle.BoldItalic);
+
+            // Draw the text
+            gfx.DrawString("THIS DOCUMENT MERGED WITH PDFMERGER Copyright 2022 Ugur CORUH", 
+                font, 
+                XBrushes.Black, 
+                new XRect(0, 0, page.Width, page.Height), 
+                XStringFormats.Center);
 
             // Iterate over input files
             foreach (string file in files)
