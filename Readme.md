@@ -1,8 +1,6 @@
 # PDF Merger Tool for Single Side ADF Scanner
 
-<img title="" src="file:///C:/Users/ugur.coruh/Desktop/csharp-gui-examples/pdf-merger/assets/ff7e550a6dbedfc1322d40817de84ca06076a64d.png" alt="pdfmergerlogo.png" data-align="center" width="199">
-
-
+<img title="" src="assets/logo.png" alt="logo.png" data-align="center" width="199">
 
 ## Usage
 
