@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Include>
   <?define CompanyName="ucoruh" ?>
-  <?define VersionNumber="2.0.0"?>
+  <?define VersionNumber="2.1.0"?>
   <?define ProductName="pdfmerger"?>
   <?define SourceFolder="..\PdfMerger\bin\"?>
 
