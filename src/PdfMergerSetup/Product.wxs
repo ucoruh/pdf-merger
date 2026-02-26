@@ -32,14 +32,8 @@
     <Property Id="ARPURLUPDATEINFO" Value="https://github.com/ucoruh/pdf-merger/releases" />
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
 
-    <!-- Custom Dialog Text -->
-    <WixVariable Id="WixUIDialogTitle" Value="PDF Merger Setup" Overridable="yes" />
-
     <UI>
       <UIRef Id="WixUI_InstallDir" />
-      <!-- Custom text overrides for a professional look -->
-      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
-      <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
     </UI>
 
     <Feature Id="MainApplication" Title="PDF Merger" Description="Install PDF Merger application with all components." Level="1" Display="expand" ConfigurableDirectory="INSTALLFOLDER">
