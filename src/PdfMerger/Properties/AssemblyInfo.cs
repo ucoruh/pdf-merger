@@ -9,8 +9,8 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("ADF Scanner Odd/Even Page Merger Utility")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Recep Tayyip Erdogan University")]
-[assembly: AssemblyProduct("PDF571")]
-[assembly: AssemblyCopyright("Copyright ©  2021 Uğur CORUH")]
+[assembly: AssemblyProduct("PdfMerger")]
+[assembly: AssemblyCopyright("Copyright © 2021-2026 Ugur CORUH")]
 [assembly: AssemblyTrademark("Uğur CORUH")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("2.0.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]

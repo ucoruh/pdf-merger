@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
 
-namespace PDF571
+namespace PdfMerger
 {
     static class Program
     {
@@ -16,7 +13,7 @@ namespace PDF571
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainFrm());
+            Application.Run(new MainForm());
         }
     }
 }

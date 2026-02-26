@@ -1,11 +1,15 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfMerger", "PdfMerger\PdfMerger.csproj", "{CB53DD23-F57B-457D-8417-48BD83605250}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfMerger", "src\PdfMerger\PdfMerger.csproj", "{CB53DD23-F57B-457D-8417-48BD83605250}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "PdfMergerSetup", "PdfMergerSetup\PdfMergerSetup.wixproj", "{750AA790-AA34-415B-870C-99B2D9BC15AE}"
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "PdfMergerSetup", "src\PdfMergerSetup\PdfMergerSetup.wixproj", "{750AA790-AA34-415B-870C-99B2D9BC15AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfMerger.Tests", "tests\PdfMerger.Tests\PdfMerger.Tests.csproj", "{D1E2F3A4-B5C6-7890-ABCD-EF1234567891}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,9 +33,20 @@ Global
 		{750AA790-AA34-415B-870C-99B2D9BC15AE}.Release|Any CPU.ActiveCfg = Release|x86
 		{750AA790-AA34-415B-870C-99B2D9BC15AE}.Release|x86.ActiveCfg = Release|x86
 		{750AA790-AA34-415B-870C-99B2D9BC15AE}.Release|x86.Build.0 = Release|x86
+		{D1E2F3A4-B5C6-7890-ABCD-EF1234567891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1E2F3A4-B5C6-7890-ABCD-EF1234567891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1E2F3A4-B5C6-7890-ABCD-EF1234567891}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D1E2F3A4-B5C6-7890-ABCD-EF1234567891}.Debug|x86.Build.0 = Debug|Any CPU
+		{D1E2F3A4-B5C6-7890-ABCD-EF1234567891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1E2F3A4-B5C6-7890-ABCD-EF1234567891}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1E2F3A4-B5C6-7890-ABCD-EF1234567891}.Release|x86.ActiveCfg = Release|Any CPU
+		{D1E2F3A4-B5C6-7890-ABCD-EF1234567891}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D1E2F3A4-B5C6-7890-ABCD-EF1234567891} = {A1B2C3D4-E5F6-7890-ABCD-EF1234567890}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4860995B-38E7-47E8-BA31-97C4DC051622}
