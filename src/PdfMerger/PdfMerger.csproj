@@ -77,6 +77,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputDialogForm.Designer.cs">
+      <DependentUpon>InputDialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="RotationDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RotationDialogForm.Designer.cs">
+      <DependentUpon>RotationDialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Services\PdfMergeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">

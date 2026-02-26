@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using PdfMerger.Services;
 
@@ -183,6 +184,157 @@ namespace PdfMerger
             }
         }
 
+        private void btnSplit_Click(object sender, EventArgs e)
+        {
+            if (listFiles.Items.Count < 1) return;
+
+            string inputFile = (string)listFiles.Items[0];
+
+            using (var inputDialog = new InputDialogForm(
+                "Split PDF",
+                "Enter page numbers to split after (comma-separated, e.g., 3,7,12):",
+                ""))
+            {
+                if (inputDialog.ShowDialog(this) != DialogResult.OK) return;
+
+                string input = inputDialog.InputText.Trim();
+                if (string.IsNullOrEmpty(input)) return;
+
+                using (var folderDialog = new FolderBrowserDialog())
+                {
+                    folderDialog.Description = "Select output folder for split PDF files";
+                    if (folderDialog.ShowDialog(this) != DialogResult.OK) return;
+
+                    try
+                    {
+                        int[] splitPoints = input.Split(',')
+                            .Select(s => int.Parse(s.Trim()))
+                            .ToArray();
+
+                        string[] outputFiles = PdfMergeService.SplitPdf(inputFile, folderDialog.SelectedPath, splitPoints);
+
+                        MessageBox.Show(
+                            $"PDF split into {outputFiles.Length} files successfully.\nOutput folder: {folderDialog.SelectedPath}",
+                            "Split PDF - Complete",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+                        Process.Start(folderDialog.SelectedPath);
+                    }
+                    catch (FormatException)
+                    {
+                        MessageBox.Show(
+                            "Invalid page numbers. Please enter comma-separated integers (e.g., 3,7,12).",
+                            "Split PDF - Invalid Input",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Split PDF - Invalid Input",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    catch (IOException ex)
+                    {
+                        MessageBox.Show(
+                            "Error writing output files." + Environment.NewLine + "Error: " + ex.Message,
+                            "Split PDF - File Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void btnExtract_Click(object sender, EventArgs e)
+        {
+            if (listFiles.Items.Count < 1) return;
+
+            string inputFile = (string)listFiles.Items[0];
+
+            using (var inputDialog = new InputDialogForm(
+                "Extract Pages",
+                "Enter page range to extract (e.g., 1-3,5,8-10):",
+                ""))
+            {
+                if (inputDialog.ShowDialog(this) != DialogResult.OK) return;
+
+                string input = inputDialog.InputText.Trim();
+                if (string.IsNullOrEmpty(input)) return;
+
+                using (var saveDialog = new SaveFileDialog())
+                {
+                    saveDialog.Filter = "PDF Documents|*.pdf";
+                    saveDialog.AddExtension = true;
+                    saveDialog.DefaultExt = "pdf";
+                    if (saveDialog.ShowDialog(this) != DialogResult.OK) return;
+
+                    try
+                    {
+                        int pageCount;
+                        using (var doc = PdfSharp.Pdf.IO.PdfReader.Open(inputFile, PdfSharp.Pdf.IO.PdfDocumentOpenMode.Import))
+                        {
+                            pageCount = doc.PageCount;
+                        }
+
+                        int[] pages = PdfMergeService.ParsePageRange(input, pageCount);
+                        PdfMergeService.ExtractPages(inputFile, saveDialog.FileName, pages);
+                        Process.Start(saveDialog.FileName);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Extract Pages - Invalid Input",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    catch (IOException ex)
+                    {
+                        MessageBox.Show(
+                            "Error writing output file." + Environment.NewLine + "Error: " + ex.Message,
+                            "Extract Pages - File Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void btnRotate_Click(object sender, EventArgs e)
+        {
+            if (listFiles.Items.Count < 1) return;
+
+            using (var rotationDialog = new RotationDialogForm())
+            {
+                if (rotationDialog.ShowDialog(this) != DialogResult.OK) return;
+
+                int angle = rotationDialog.SelectedAngle;
+
+                using (var saveDialog = new SaveFileDialog())
+                {
+                    saveDialog.Filter = "PDF Documents|*.pdf";
+                    saveDialog.AddExtension = true;
+                    saveDialog.DefaultExt = "pdf";
+                    if (saveDialog.ShowDialog(this) != DialogResult.OK) return;
+
+                    try
+                    {
+                        string inputFile = (string)listFiles.Items[0];
+                        PdfMergeService.RotatePages(inputFile, saveDialog.FileName, angle);
+                        Process.Start(saveDialog.FileName);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        MessageBox.Show(ex.Message, "Rotate Pages - Invalid Input",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    catch (IOException ex)
+                    {
+                        MessageBox.Show(
+                            "Error writing output file." + Environment.NewLine + "Error: " + ex.Message,
+                            "Rotate Pages - File Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Updates the enabled state of all buttons based on the current file list count.
         /// </summary>
@@ -197,6 +349,9 @@ namespace PdfMerger
             btnMergeAll.Enabled = count > 1;
             btnMergeADF.Enabled = count == 2;
             btnUpdateThesis.Enabled = count == 3;
+            btnSplit.Enabled = hasFiles;
+            btnExtract.Enabled = hasFiles;
+            btnRotate.Enabled = hasFiles;
         }
     }
 }

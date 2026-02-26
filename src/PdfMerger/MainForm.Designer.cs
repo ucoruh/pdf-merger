@@ -38,48 +38,11 @@ namespace PdfMerger
             this.btnUpdateThesis = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblSeparator = new System.Windows.Forms.Label();
+            this.btnSplit = new System.Windows.Forms.Button();
+            this.btnExtract = new System.Windows.Forms.Button();
+            this.btnRotate = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            //
-            // btnRemove
-            //
-            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemove.BackColor = System.Drawing.SystemColors.Control;
-            this.btnRemove.Enabled = false;
-            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemove.Location = new System.Drawing.Point(550, 159);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(159, 49);
-            this.btnRemove.TabIndex = 12;
-            this.btnRemove.Text = "Remove";
-            this.btnRemove.UseVisualStyleBackColor = false;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            //
-            // btnAdd
-            //
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(550, 110);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(159, 49);
-            this.btnAdd.TabIndex = 11;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            //
-            // btnMoveDown
-            //
-            this.btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoveDown.BackColor = System.Drawing.SystemColors.Control;
-            this.btnMoveDown.Enabled = false;
-            this.btnMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoveDown.Location = new System.Drawing.Point(550, 61);
-            this.btnMoveDown.Name = "btnMoveDown";
-            this.btnMoveDown.Size = new System.Drawing.Size(159, 49);
-            this.btnMoveDown.TabIndex = 10;
-            this.btnMoveDown.Text = "Move Down";
-            this.btnMoveDown.UseVisualStyleBackColor = false;
-            this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
             //
             // btnMoveUp
             //
@@ -90,11 +53,52 @@ namespace PdfMerger
             this.btnMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMoveUp.Location = new System.Drawing.Point(550, 12);
             this.btnMoveUp.Name = "btnMoveUp";
-            this.btnMoveUp.Size = new System.Drawing.Size(159, 49);
+            this.btnMoveUp.Size = new System.Drawing.Size(159, 37);
             this.btnMoveUp.TabIndex = 9;
             this.btnMoveUp.Text = "Move Up";
             this.btnMoveUp.UseVisualStyleBackColor = false;
             this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
+            //
+            // btnMoveDown
+            //
+            this.btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoveDown.BackColor = System.Drawing.SystemColors.Control;
+            this.btnMoveDown.Enabled = false;
+            this.btnMoveDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoveDown.Location = new System.Drawing.Point(550, 51);
+            this.btnMoveDown.Name = "btnMoveDown";
+            this.btnMoveDown.Size = new System.Drawing.Size(159, 37);
+            this.btnMoveDown.TabIndex = 10;
+            this.btnMoveDown.Text = "Move Down";
+            this.btnMoveDown.UseVisualStyleBackColor = false;
+            this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
+            //
+            // btnAdd
+            //
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(550, 90);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(159, 37);
+            this.btnAdd.TabIndex = 11;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            //
+            // btnRemove
+            //
+            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemove.BackColor = System.Drawing.SystemColors.Control;
+            this.btnRemove.Enabled = false;
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemove.Location = new System.Drawing.Point(550, 129);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(159, 37);
+            this.btnRemove.TabIndex = 12;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             //
             // btnMergeAll
             //
@@ -102,13 +106,92 @@ namespace PdfMerger
             this.btnMergeAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnMergeAll.Enabled = false;
             this.btnMergeAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMergeAll.Location = new System.Drawing.Point(550, 213);
+            this.btnMergeAll.Location = new System.Drawing.Point(550, 175);
             this.btnMergeAll.Name = "btnMergeAll";
-            this.btnMergeAll.Size = new System.Drawing.Size(159, 49);
+            this.btnMergeAll.Size = new System.Drawing.Size(159, 37);
             this.btnMergeAll.TabIndex = 8;
             this.btnMergeAll.Text = "Merge Sequential";
             this.btnMergeAll.UseVisualStyleBackColor = false;
             this.btnMergeAll.Click += new System.EventHandler(this.btnMerge_Click);
+            //
+            // btnMergeADF
+            //
+            this.btnMergeADF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMergeADF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnMergeADF.Enabled = false;
+            this.btnMergeADF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMergeADF.Location = new System.Drawing.Point(550, 214);
+            this.btnMergeADF.Name = "btnMergeADF";
+            this.btnMergeADF.Size = new System.Drawing.Size(159, 37);
+            this.btnMergeADF.TabIndex = 13;
+            this.btnMergeADF.Text = "Merge ADF Odd/Even";
+            this.btnMergeADF.UseVisualStyleBackColor = false;
+            this.btnMergeADF.Click += new System.EventHandler(this.btnMergeADF_Click);
+            //
+            // btnUpdateThesis
+            //
+            this.btnUpdateThesis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdateThesis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnUpdateThesis.Enabled = false;
+            this.btnUpdateThesis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateThesis.Location = new System.Drawing.Point(550, 253);
+            this.btnUpdateThesis.Name = "btnUpdateThesis";
+            this.btnUpdateThesis.Size = new System.Drawing.Size(159, 37);
+            this.btnUpdateThesis.TabIndex = 14;
+            this.btnUpdateThesis.Text = "Thesis Update";
+            this.btnUpdateThesis.UseVisualStyleBackColor = false;
+            this.btnUpdateThesis.Click += new System.EventHandler(this.btnUpdateThesis_Click);
+            //
+            // lblSeparator
+            //
+            this.lblSeparator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSeparator.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSeparator.Location = new System.Drawing.Point(550, 299);
+            this.lblSeparator.Name = "lblSeparator";
+            this.lblSeparator.Size = new System.Drawing.Size(159, 2);
+            this.lblSeparator.TabIndex = 17;
+            //
+            // btnSplit
+            //
+            this.btnSplit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSplit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnSplit.Enabled = false;
+            this.btnSplit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSplit.Location = new System.Drawing.Point(550, 310);
+            this.btnSplit.Name = "btnSplit";
+            this.btnSplit.Size = new System.Drawing.Size(159, 37);
+            this.btnSplit.TabIndex = 18;
+            this.btnSplit.Text = "Split PDF";
+            this.btnSplit.UseVisualStyleBackColor = false;
+            this.btnSplit.Click += new System.EventHandler(this.btnSplit_Click);
+            //
+            // btnExtract
+            //
+            this.btnExtract.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExtract.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(160)))), ((int)(((byte)(255)))));
+            this.btnExtract.Enabled = false;
+            this.btnExtract.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExtract.Location = new System.Drawing.Point(550, 349);
+            this.btnExtract.Name = "btnExtract";
+            this.btnExtract.Size = new System.Drawing.Size(159, 37);
+            this.btnExtract.TabIndex = 19;
+            this.btnExtract.Text = "Extract Pages";
+            this.btnExtract.UseVisualStyleBackColor = false;
+            this.btnExtract.Click += new System.EventHandler(this.btnExtract_Click);
+            //
+            // btnRotate
+            //
+            this.btnRotate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRotate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(160)))), ((int)(((byte)(200)))));
+            this.btnRotate.Enabled = false;
+            this.btnRotate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRotate.Location = new System.Drawing.Point(550, 388);
+            this.btnRotate.Name = "btnRotate";
+            this.btnRotate.Size = new System.Drawing.Size(159, 37);
+            this.btnRotate.TabIndex = 20;
+            this.btnRotate.Text = "Rotate Pages";
+            this.btnRotate.UseVisualStyleBackColor = false;
+            this.btnRotate.Click += new System.EventHandler(this.btnRotate_Click);
             //
             // listFiles
             //
@@ -122,38 +205,10 @@ namespace PdfMerger
             this.listFiles.ItemHeight = 16;
             this.listFiles.Location = new System.Drawing.Point(12, 61);
             this.listFiles.Name = "listFiles";
-            this.listFiles.Size = new System.Drawing.Size(532, 292);
+            this.listFiles.Size = new System.Drawing.Size(532, 372);
             this.listFiles.TabIndex = 7;
             this.listFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.listFiles_DragDrop);
             this.listFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.listFiles_DragEnter);
-            //
-            // btnMergeADF
-            //
-            this.btnMergeADF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMergeADF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnMergeADF.Enabled = false;
-            this.btnMergeADF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMergeADF.Location = new System.Drawing.Point(550, 262);
-            this.btnMergeADF.Name = "btnMergeADF";
-            this.btnMergeADF.Size = new System.Drawing.Size(159, 49);
-            this.btnMergeADF.TabIndex = 13;
-            this.btnMergeADF.Text = "Merge ADF Odd/Even Mix";
-            this.btnMergeADF.UseVisualStyleBackColor = false;
-            this.btnMergeADF.Click += new System.EventHandler(this.btnMergeADF_Click);
-            //
-            // btnUpdateThesis
-            //
-            this.btnUpdateThesis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdateThesis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.btnUpdateThesis.Enabled = false;
-            this.btnUpdateThesis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateThesis.Location = new System.Drawing.Point(550, 311);
-            this.btnUpdateThesis.Name = "btnUpdateThesis";
-            this.btnUpdateThesis.Size = new System.Drawing.Size(159, 49);
-            this.btnUpdateThesis.TabIndex = 14;
-            this.btnUpdateThesis.Text = "Thesis Update";
-            this.btnUpdateThesis.UseVisualStyleBackColor = false;
-            this.btnUpdateThesis.Click += new System.EventHandler(this.btnUpdateThesis_Click);
             //
             // label1
             //
@@ -182,7 +237,11 @@ namespace PdfMerger
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(716, 381);
+            this.ClientSize = new System.Drawing.Size(716, 450);
+            this.Controls.Add(this.btnRotate);
+            this.Controls.Add(this.btnExtract);
+            this.Controls.Add(this.btnSplit);
+            this.Controls.Add(this.lblSeparator);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnUpdateThesis);
@@ -214,5 +273,9 @@ namespace PdfMerger
         private System.Windows.Forms.Button btnUpdateThesis;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblSeparator;
+        private System.Windows.Forms.Button btnSplit;
+        private System.Windows.Forms.Button btnExtract;
+        private System.Windows.Forms.Button btnRotate;
     }
 }
