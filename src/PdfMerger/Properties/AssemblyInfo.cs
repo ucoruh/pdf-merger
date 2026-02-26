@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("PDF Merger Utility")]
-[assembly: AssemblyDescription("ADF Scanner Odd/Even Page Merger Utility")]
+[assembly: AssemblyDescription("PDF Merger - Split, Extract, Rotate, and Merge PDF files")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Recep Tayyip Erdogan University")]
 [assembly: AssemblyProduct("PdfMerger")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.0.0.0")]
-[assembly: AssemblyFileVersion("2.0.0.0")]
+[assembly: AssemblyVersion("2.1.0.0")]
+[assembly: AssemblyFileVersion("2.1.0.0")]
