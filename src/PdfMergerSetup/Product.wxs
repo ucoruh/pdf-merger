@@ -45,27 +45,20 @@
   <Fragment>
     <ComponentGroup Id="AppComponents">
 
-      <Component Id="AppComponents" Guid="$(var.AppComponentsGuid)" Directory="versionFolder">
-        <File Id="PdfMerger.exe.config" Name="PdfMerger.exe.config" Source="$(var.SourceFolder)\$(var.Configuration)\PdfMerger.exe.config" Vital="yes" KeyPath="no" DiskId="1" />
-        <File Id="PdfSharp.Charting.xml" Name="PdfSharp.Charting.xml" Source="$(var.SourceFolder)\$(var.Configuration)\PdfSharp.Charting.xml" Vital="yes" KeyPath="no" DiskId="1" />
-        <File Id="PdfSharp.dll" Name="PdfSharp.dll" Source="$(var.SourceFolder)\$(var.Configuration)\PdfSharp.dll" Vital="yes" KeyPath="no" DiskId="1" />
-        <File Id="PdfSharp.xml" Name="PdfSharp.xml" Source="$(var.SourceFolder)\$(var.Configuration)\PdfSharp.xml" Vital="yes" KeyPath="no" DiskId="1" />
+      <Component Id="AppComponents" Guid="$(var.AppComponentsGuid)" Directory="INSTALLFOLDER">
         <File Id="PdfMerger.exe" Name="PdfMerger.exe" Source="$(var.SourceFolder)\$(var.Configuration)\PdfMerger.exe" Vital="yes" KeyPath="yes" DiskId="1" Checksum="yes" />
-      </Component>
-
-      <Component Id="AppResources" Guid="$(var.AppResourcesGuid)" Directory="resourceFolder">
-        <File Id="PdfSharp.Charting.resources.dll" Name="PdfSharp.Charting.resources.dll" Source="$(var.SourceFolder)\$(var.Configuration)\de\PdfSharp.Charting.resources.dll" Vital="yes" KeyPath="no" DiskId="1" />
-        <File Id="PdfSharp.resources.dll" Name="PdfSharp.resources.dll" Source="$(var.SourceFolder)\$(var.Configuration)\de\PdfSharp.resources.dll" Vital="yes" KeyPath="no" DiskId="1" />
+        <File Id="PdfMerger.exe.config" Name="PdfMerger.exe.config" Source="$(var.SourceFolder)\$(var.Configuration)\PdfMerger.exe.config" Vital="yes" KeyPath="no" DiskId="1" />
+        <File Id="PdfSharp.dll" Name="PdfSharp.dll" Source="$(var.SourceFolder)\$(var.Configuration)\PdfSharp.dll" Vital="yes" KeyPath="no" DiskId="1" />
       </Component>
 
       <Component Id="AppShortcut" Guid="$(var.AppShortcutGuid)" Directory="ApplicationProgramsFolder">
-        <Shortcut Id="AppStartMenuShortcut" Name="PDF Merger" Description="Merge and interleave PDF files" Target="[#PdfMerger.exe]" WorkingDirectory="versionFolder" Icon="PdfMergerIcon.ico" />
+        <Shortcut Id="AppStartMenuShortcut" Name="PDF Merger" Description="Merge and interleave PDF files" Target="[#PdfMerger.exe]" WorkingDirectory="INSTALLFOLDER" Icon="PdfMergerIcon.ico" />
         <RemoveFolder Id="RemoveApplicationProgramsFolder" Directory="ApplicationProgramsFolder" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\$(var.CompanyName)\$(var.ProductName)\$(var.VersionNumber)\$(var.Configuration)" Name="installed" Type="integer" Value="1" KeyPath="yes" />
       </Component>
 
       <Component Id="AppShortcutDesktop" Guid="$(var.AppShortcutDesktopGuid)" Directory="DesktopFolder">
-        <Shortcut Id="AppDesktopShortcut" Name="PDF Merger" Description="Merge and interleave PDF files" Target="[#PdfMerger.exe]" WorkingDirectory="versionFolder" Icon="PdfMergerIcon.ico" />
+        <Shortcut Id="AppDesktopShortcut" Name="PDF Merger" Description="Merge and interleave PDF files" Target="[#PdfMerger.exe]" WorkingDirectory="INSTALLFOLDER" Icon="PdfMergerIcon.ico" />
         <RemoveFolder Id="RemoveDesktopFolder" Directory="DesktopFolder" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\$(var.CompanyName)\$(var.ProductName)\$(var.VersionNumber)\$(var.Configuration)" Name="installed" Type="integer" Value="1" KeyPath="yes" />
       </Component>
@@ -75,16 +68,8 @@
   </Fragment>
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="WINDOWSVOLUME">
-        <Directory Id="ProgramFilesFolder">
-          <Directory Id="INSTALLFOLDER" Name="PDF Merger">
-            <Directory Id="mainFolder" Name="$(var.Configuration)">
-              <Directory Id="versionFolder" Name="$(var.VersionNumber)">
-                <Directory Id="resourceFolder" Name="de">
-                </Directory>
-              </Directory>
-            </Directory>
-          </Directory>
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="PDF Merger">
         </Directory>
       </Directory>
       <Directory Id="ProgramMenuFolder">
