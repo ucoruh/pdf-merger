@@ -1,76 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?include InformationVariables.wxi ?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="$(var.ProductID)" 
-           Name="$(var.ProductName) $(var.VersionNumber) $(var.Configuration)" 
-           Language="1033" 
-           Version="$(var.VersionNumber)" 
-           Manufacturer="$(var.CompanyName)" 
+  <Product Id="$(var.ProductID)"
+           Name="PDF Merger $(var.VersionNumber)"
+           Language="1033"
+           Version="$(var.VersionNumber)"
+           Manufacturer="Ugur CORUH"
            UpgradeCode="$(var.UpgradeCode)">
 
-    <Package InstallerVersion="200" Compressed="yes" InstallPrivileges="elevated" AdminImage="yes" InstallScope="perMachine" />
-    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Package InstallerVersion="200" Compressed="yes" InstallPrivileges="elevated" AdminImage="yes" InstallScope="perMachine"
+             Description="PDF Merger $(var.VersionNumber) - A Windows desktop application for merging PDF files"
+             Comments="PDF Merger installs the application for merging and interleaving PDF files."
+             Manufacturer="Ugur CORUH" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of PDF Merger is already installed. Please uninstall it first." />
 
     <Property Id="MSIUSEREALADMINDETECTION" Value="1" />
 
-    <Media Id="1" Cabinet="adfpdfmerger.cab" EmbedCab="yes" />
+    <Media Id="1" Cabinet="pdfmerger.cab" EmbedCab="yes" />
 
-    <Binary Id="ADFMergerBanner" SourceFile="$(var.ProjectDir)img\banner.bmp" />
+    <!-- Installer UI Images -->
+    <Binary Id="PdfMergerBanner" SourceFile="$(var.ProjectDir)img\banner.bmp" />
     <WixVariable Id="WixUIBannerBmp" Value="$(var.ProjectDir)img\banner.bmp" />
     <WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)img\pdfmerger_bg.bmp" />
     <WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)res\Readme.rtf" />
-    <Icon Id="carteklogo.ico" SourceFile="$(var.ProjectDir)img\pdfmergerlogo.ico" />
-    <Property Id="ARPPRODUCTICON" Value="pdfmergerlogo.ico" />
+
+    <!-- Application Icon -->
+    <Icon Id="PdfMergerIcon.ico" SourceFile="$(var.ProjectDir)img\pdfmergerlogo.ico" />
+    <Property Id="ARPPRODUCTICON" Value="PdfMergerIcon.ico" />
+    <Property Id="ARPHELPLINK" Value="https://ucoruh.github.io/pdf-merger/" />
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/ucoruh/pdf-merger" />
+    <Property Id="ARPURLUPDATEINFO" Value="https://github.com/ucoruh/pdf-merger/releases" />
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
-    
+
+    <!-- Custom Dialog Text -->
+    <WixVariable Id="WixUIDialogTitle" Value="PDF Merger Setup" Overridable="yes" />
+
     <UI>
       <UIRef Id="WixUI_InstallDir" />
+      <!-- Custom text overrides for a professional look -->
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
+      <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
     </UI>
-    
-    <Feature Id="AppFeatures" Title="ClientService" Level="1">
+
+    <Feature Id="MainApplication" Title="PDF Merger" Description="Install PDF Merger application with all components." Level="1" Display="expand" ConfigurableDirectory="INSTALLFOLDER">
       <ComponentGroupRef Id="AppComponents" />
     </Feature>
-    
+
   </Product>
- 
+
   <Fragment>
     <ComponentGroup Id="AppComponents">
-      
+
       <Component Id="AppComponents" Guid="$(var.AppComponentsGuid)" Directory="versionFolder">
         <File Id="PdfMerger.exe.config" Name="PdfMerger.exe.config" Source="$(var.SourceFolder)\$(var.Configuration)\PdfMerger.exe.config" Vital="yes" KeyPath="no" DiskId="1" />
         <File Id="PdfSharp.Charting.xml" Name="PdfSharp.Charting.xml" Source="$(var.SourceFolder)\$(var.Configuration)\PdfSharp.Charting.xml" Vital="yes" KeyPath="no" DiskId="1" />
         <File Id="PdfSharp.dll" Name="PdfSharp.dll" Source="$(var.SourceFolder)\$(var.Configuration)\PdfSharp.dll" Vital="yes" KeyPath="no" DiskId="1" />
         <File Id="PdfSharp.xml" Name="PdfSharp.xml" Source="$(var.SourceFolder)\$(var.Configuration)\PdfSharp.xml" Vital="yes" KeyPath="no" DiskId="1" />
         <File Id="PdfMerger.exe" Name="PdfMerger.exe" Source="$(var.SourceFolder)\$(var.Configuration)\PdfMerger.exe" Vital="yes" KeyPath="yes" DiskId="1" Checksum="yes" />
-
       </Component>
-      
+
       <Component Id="AppResources" Guid="$(var.AppResourcesGuid)" Directory="resourceFolder">
         <File Id="PdfSharp.Charting.resources.dll" Name="PdfSharp.Charting.resources.dll" Source="$(var.SourceFolder)\$(var.Configuration)\de\PdfSharp.Charting.resources.dll" Vital="yes" KeyPath="no" DiskId="1" />
         <File Id="PdfSharp.resources.dll" Name="PdfSharp.resources.dll" Source="$(var.SourceFolder)\$(var.Configuration)\de\PdfSharp.resources.dll" Vital="yes" KeyPath="no" DiskId="1" />
       </Component>
-      
+
       <Component Id="AppShortcut" Guid="$(var.AppShortcutGuid)" Directory="ApplicationProgramsFolder">
-        <Shortcut Id="AppStartMenuShortcut" Name="$(var.ProductName) $(var.VersionNumber) $(var.Configuration)" Description="$(var.ProductName) $(var.VersionNumber) $(var.Configuration)" Target="[#PdfMerger.exe]" WorkingDirectory="versionFolder" />
+        <Shortcut Id="AppStartMenuShortcut" Name="PDF Merger" Description="Merge and interleave PDF files" Target="[#PdfMerger.exe]" WorkingDirectory="versionFolder" Icon="PdfMergerIcon.ico" />
         <RemoveFolder Id="RemoveApplicationProgramsFolder" Directory="ApplicationProgramsFolder" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\$(var.CompanyName)\$(var.ProductName)\$(var.VersionNumber)\$(var.Configuration)" Name="installed" Type="integer" Value="1" KeyPath="yes" />
       </Component>
-     
+
       <Component Id="AppShortcutDesktop" Guid="$(var.AppShortcutDesktopGuid)" Directory="DesktopFolder">
-        <Shortcut Id="AppDesktopShortcut" Name="$(var.ProductName) $(var.VersionNumber) $(var.Configuration)" Description="$(var.ProductName) $(var.VersionNumber) $(var.Configuration)" Target="[#PdfMerger.exe]" WorkingDirectory="versionFolder" />
+        <Shortcut Id="AppDesktopShortcut" Name="PDF Merger" Description="Merge and interleave PDF files" Target="[#PdfMerger.exe]" WorkingDirectory="versionFolder" Icon="PdfMergerIcon.ico" />
         <RemoveFolder Id="RemoveDesktopFolder" Directory="DesktopFolder" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\$(var.CompanyName)\$(var.ProductName)\$(var.VersionNumber)\$(var.Configuration)" Name="installed" Type="integer" Value="1" KeyPath="yes" />
       </Component>
-      
+
     </ComponentGroup>
-  
+
   </Fragment>
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="WINDOWSVOLUME">
         <Directory Id="ProgramFilesFolder">
-          <Directory Id="INSTALLFOLDER" Name="$(var.CompanyName)">
-            <Directory Id="mainFolder" Name="$(var.ProductName) $(var.Configuration)">
+          <Directory Id="INSTALLFOLDER" Name="PDF Merger">
+            <Directory Id="mainFolder" Name="$(var.Configuration)">
               <Directory Id="versionFolder" Name="$(var.VersionNumber)">
                 <Directory Id="resourceFolder" Name="de">
                 </Directory>
@@ -80,7 +94,7 @@
         </Directory>
       </Directory>
       <Directory Id="ProgramMenuFolder">
-        <Directory Id="ApplicationProgramsFolder" Name="$(var.ProductName) $(var.Configuration)" />
+        <Directory Id="ApplicationProgramsFolder" Name="PDF Merger" />
       </Directory>
       <Directory Id="DesktopFolder" Name="Desktop">
       </Directory>
