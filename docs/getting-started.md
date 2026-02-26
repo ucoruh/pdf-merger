@@ -1,5 +1,12 @@
 # Getting Started
 
+## Download
+
+[:material-download: Download Latest Release](https://github.com/ucoruh/pdf-merger/releases/latest){ .md-button .md-button--primary }
+[:material-github: View on GitHub](https://github.com/ucoruh/pdf-merger){ .md-button }
+
+---
+
 ## System Requirements
 
 - Windows 10 or later
@@ -7,12 +14,15 @@
 
 ## Installation
 
-### Option 1: Download Release
+### Option 1: Download Release (Recommended)
 
-1. Go to the [Releases](https://github.com/ucoruh/pdf-merger/releases) page
+1. Go to the [Releases](https://github.com/ucoruh/pdf-merger/releases/latest) page
 2. Download the latest `PdfMerger-vX.X.X.zip` archive
 3. Extract the archive to a folder of your choice
 4. Run `PdfMerger.exe`
+
+!!! tip
+    No installation required. Just extract and run.
 
 ### Option 2: Build from Source
 
