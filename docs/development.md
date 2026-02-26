@@ -49,8 +49,10 @@ pdf-merger/
 
 | Class | Purpose |
 |-------|---------|
-| `PdfMergeService` | Static class with three merge methods |
-| `MainForm` | WinForms UI with drag-drop, file management, and merge buttons |
+| `PdfMergeService` | Static class with merge, split, extract, and rotate methods |
+| `MainForm` | WinForms UI with drag-drop, file management, and operation buttons |
+| `InputDialogForm` | Reusable text input dialog (used by Split and Extract) |
+| `RotationDialogForm` | Angle selection dialog (used by Rotate) |
 | `Program` | Application entry point |
 
 ## Testing
@@ -63,12 +65,16 @@ dotnet test tests/PdfMerger.Tests/PdfMerger.Tests.csproj
 
 ### Test Coverage
 
-Tests cover all three merge modes:
+Tests cover all six operations (37 tests total):
 
 - Sequential merge with varying file counts
 - ADF merge with equal and unequal page counts
 - Thesis update with correct and incorrect file counts
-- Edge cases: null input, missing files, wrong file counts
+- Split PDF with various split points and edge cases
+- Extract pages with ranges, single pages, and boundary conditions
+- Rotate pages with 90/180/270 degrees and invalid angles
+- ParsePageRange with mixed ranges and error cases
+- Edge cases: null input, missing files, wrong file counts, out-of-range pages
 
 ## CI/CD
 

@@ -4,7 +4,7 @@
 
 **Namespace:** `PdfMerger.Services`
 
-Static class providing PDF merging operations.
+Static class providing PDF merge, split, extract, and rotate operations.
 
 ---
 
@@ -77,6 +77,108 @@ Updates a thesis PDF by inserting signature and declaration pages at positions 3
 |-----------|-----------|
 | `ArgumentException` | Not exactly 3 files provided |
 | `FileNotFoundException` | An input file does not exist |
+
+---
+
+### SplitPdf
+
+```csharp
+public static string[] SplitPdf(string inputFile, string outputFolder, int[] splitAfterPages)
+```
+
+Splits a PDF file into multiple parts at specified page boundaries. For example, splitting a 10-page PDF at pages 3 and 7 produces three files: pages 1-3, 4-7, and 8-10.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `inputFile` | `string` | Path to the input PDF file |
+| `outputFolder` | `string` | Directory for the split output files |
+| `splitAfterPages` | `int[]` | 1-based page numbers to split after |
+
+**Returns:** `string[]` — Array of created output file paths.
+
+**Exceptions:**
+
+| Exception | Condition |
+|-----------|-----------|
+| `ArgumentException` | Null/empty file path, empty split points, or page numbers out of range |
+| `FileNotFoundException` | Input file does not exist |
+
+---
+
+### ExtractPages
+
+```csharp
+public static void ExtractPages(string inputFile, string outputFile, int[] pageNumbers)
+```
+
+Extracts specified pages from a PDF into a new document. Page numbers are 1-based.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `inputFile` | `string` | Path to the input PDF file |
+| `outputFile` | `string` | Path for the extracted output PDF file |
+| `pageNumbers` | `int[]` | 1-based page numbers to extract |
+
+**Exceptions:**
+
+| Exception | Condition |
+|-----------|-----------|
+| `ArgumentException` | Null/empty file path, empty page list, or page numbers out of range |
+| `FileNotFoundException` | Input file does not exist |
+
+---
+
+### RotatePages
+
+```csharp
+public static void RotatePages(string inputFile, string outputFile, int angle)
+```
+
+Rotates all pages in a PDF by the specified angle.
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `inputFile` | `string` | Path to the input PDF file |
+| `outputFile` | `string` | Path for the rotated output PDF file |
+| `angle` | `int` | Rotation angle: 90, 180, or 270 degrees |
+
+**Exceptions:**
+
+| Exception | Condition |
+|-----------|-----------|
+| `ArgumentException` | Null/empty file path, or angle not 90/180/270 |
+| `FileNotFoundException` | Input file does not exist |
+
+---
+
+### ParsePageRange
+
+```csharp
+public static int[] ParsePageRange(string rangeString, int maxPage)
+```
+
+Parses a page range string into an array of page numbers. Supports single pages and ranges (e.g., `"1-3,5,8-10"` returns `[1, 2, 3, 5, 8, 9, 10]`).
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `rangeString` | `string` | Comma-separated page numbers and ranges |
+| `maxPage` | `int` | Maximum valid page number |
+
+**Returns:** `int[]` — Array of parsed page numbers.
+
+**Exceptions:**
+
+| Exception | Condition |
+|-----------|-----------|
+| `ArgumentException` | Empty string, invalid format, or page numbers out of range |
 
 ---
 

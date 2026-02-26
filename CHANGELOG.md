@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-02-27
+
+### Added
+
+- **Split PDF** — Split a PDF at specified page numbers into multiple output files
+- **Extract Pages** — Extract specific pages from a PDF using range syntax (e.g., `1-3,5,8-10`)
+- **Rotate Pages** — Rotate all pages in a PDF by 90, 180, or 270 degrees
+- `ParsePageRange` helper for flexible page range input
+- `InputDialogForm` — Reusable text input dialog for Split and Extract operations
+- `RotationDialogForm` — Angle selection dialog for Rotate operation
+- 21 new unit tests covering Split, Extract, Rotate, and ParsePageRange
+
+### Changed
+
+- UI redesigned: compact 37px buttons, separator between merge and tool operations
+- Form height increased to accommodate new operation buttons
+- Button states update dynamically based on file list count
+
 ## [2.0.0] - 2026-02-27
 
 ### Added
