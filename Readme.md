@@ -6,7 +6,7 @@
 [![Latest Release](https://img.shields.io/github/v/release/ucoruh/pdf-merger)](https://github.com/ucoruh/pdf-merger/releases/latest)
 [![Documentation](https://img.shields.io/badge/docs-MkDocs-blue)](https://ucoruh.github.io/pdf-merger/)
 
-A Windows desktop application for merging PDF files with specialized support for **single-side ADF (Automatic Document Feeder) scanners**. Built with C# WinForms and [PDFsharp](http://www.pdfsharp.net/).
+A Windows desktop application for merging, splitting, extracting, and rotating PDF files with specialized support for **single-side ADF (Automatic Document Feeder) scanners**. Built with C# WinForms and [PDFsharp](http://www.pdfsharp.net/).
 
 > **[View Full Documentation](https://ucoruh.github.io/pdf-merger/)** | **[Download Latest Release](https://github.com/ucoruh/pdf-merger/releases/latest)**
 
@@ -23,6 +23,18 @@ Designed for scanners that only scan one side at a time. Provide two PDFs (odd p
 ### Thesis Update
 
 Insert signed signature and declaration pages into your thesis PDF at the correct positions (pages 3 and 4).
+
+### Split PDF
+
+Split a PDF into multiple files at specified page boundaries. For example, a 10-page PDF split at pages 3 and 7 produces three separate files.
+
+### Extract Pages
+
+Extract specific pages from a PDF using flexible range syntax (e.g., `1-3,5,8-10`) into a new document.
+
+### Rotate Pages
+
+Rotate all pages in a PDF by 90, 180, or 270 degrees. Useful for fixing scanned documents with wrong orientation.
 
 ## Screenshots
 
@@ -78,6 +90,27 @@ Download the latest release from the [Releases](https://github.com/ucoruh/pdf-me
    - Declaration page
 2. Click **Thesis Update**
 3. Choose the output file location
+
+### Split a PDF
+
+1. Add the PDF file you want to split
+2. Click **Split PDF**
+3. Enter page numbers to split after (e.g., `3,7,12`)
+4. Choose the output folder
+
+### Extract Specific Pages
+
+1. Add the PDF file you want to extract from
+2. Click **Extract Pages**
+3. Enter the page range (e.g., `1-3,5,8-10`)
+4. Choose the output file location
+
+### Rotate a PDF
+
+1. Add the PDF file you want to rotate
+2. Click **Rotate Pages**
+3. Select the rotation angle (90°, 180°, or 270°)
+4. Choose the output file location
 
 ## Development
 

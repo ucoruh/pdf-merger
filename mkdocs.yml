@@ -3,8 +3,8 @@ site_name: "PDF Merger"
 site_url: https://ucoruh.github.io/pdf-merger/
 site_author: Asst. Prof. Dr. Ugur CORUH
 site_description: >-
-  A Windows desktop application for merging PDF files with specialized
-  support for single-side ADF scanners.
+  A Windows desktop application for merging, splitting, extracting, and rotating
+  PDF files with specialized support for single-side ADF scanners.
 
 # Repository
 repo_name: GitHub
