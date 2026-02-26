@@ -6,6 +6,8 @@
 
 Static class providing PDF merging operations.
 
+---
+
 ### MergeSequential
 
 ```csharp
@@ -27,6 +29,8 @@ Merges multiple PDF files sequentially into a single output file. Pages from eac
 |-----------|-----------|
 | `ArgumentException` | Fewer than 2 files provided |
 | `FileNotFoundException` | An input file does not exist |
+
+---
 
 ### MergeAdfScanning
 
@@ -50,6 +54,8 @@ Merges two PDF files by interleaving odd and even pages. Even pages are inserted
 | `ArgumentException` | Not exactly 2 files, or page counts don't match |
 | `FileNotFoundException` | An input file does not exist |
 
+---
+
 ### ThesisUpdate
 
 ```csharp
@@ -72,13 +78,26 @@ Updates a thesis PDF by inserting signature and declaration pages at positions 3
 | `ArgumentException` | Not exactly 3 files provided |
 | `FileNotFoundException` | An input file does not exist |
 
-## Doxygen Documentation
+---
 
-For detailed auto-generated API documentation from source code XML comments, build the Doxygen docs:
+## Doxygen Documentation (Auto-Generated)
+
+The full auto-generated API documentation from source code XML comments is available online:
+
+**[Browse Doxygen API Documentation](../doxygen/index.html){ target="_blank" }**
+
+This includes:
+
+- Complete class hierarchy
+- All public methods with parameters and return types
+- Source code browser
+- XML documentation comments rendered as HTML
+
+### Building Doxygen Locally
 
 ```bash
 cd doxygen
 doxygen Doxyfile
 ```
 
-The generated HTML documentation will be in `doxygen/output/html/`.
+The generated HTML documentation will be in `doxygen/output/html/`. Open `index.html` to browse.
