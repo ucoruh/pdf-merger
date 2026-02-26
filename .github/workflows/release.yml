@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   build-and-release:
     runs-on: windows-latest
@@ -40,3 +43,42 @@ jobs:
         generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy-docs:
+    needs: build-and-release
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install Doxygen
+      run: sudo apt-get install -y doxygen
+
+    - name: Generate Doxygen Documentation
+      run: |
+        cd doxygen
+        doxygen Doxyfile
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install MkDocs Material
+      run: pip install mkdocs-material
+
+    - name: Build MkDocs Site
+      run: mkdocs build
+
+    - name: Copy Doxygen Output into MkDocs Site
+      run: |
+        mkdir -p site/doxygen
+        cp -r doxygen/output/html/* site/doxygen/
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./site
+        force_orphan: true
