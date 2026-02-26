@@ -36,7 +36,7 @@ jobs:
       run: msbuild PdfMerger.sln /p:Configuration=Release /p:Platform="Any CPU"
 
     - name: Build MSI Installer
-      run: msbuild src\PdfMergerSetup\PdfMergerSetup.wixproj /p:Configuration=Release /p:Platform=x86
+      run: msbuild src\PdfMergerSetup\PdfMergerSetup.wixproj /p:Configuration=Release /p:Platform=x86 /p:BuildProjectReferences=false
 
     - name: Create Release Archive
       run: |
