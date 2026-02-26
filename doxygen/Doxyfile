@@ -1,0 +1,28 @@
+# Doxyfile - PDF Merger API Documentation
+
+PROJECT_NAME           = "PDF Merger"
+PROJECT_NUMBER         = 2.0.0
+PROJECT_BRIEF          = "A Windows desktop application for merging PDF files"
+OUTPUT_DIRECTORY       = output
+INPUT                  = ../src/PdfMerger
+FILE_PATTERNS          = *.cs
+RECURSIVE              = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HTML_OUTPUT            = html
+HAVE_DOT               = NO
+OPTIMIZE_OUTPUT_JAVA   = YES
+BUILTIN_STL_SUPPORT    = YES
+JAVADOC_AUTOBRIEF      = YES
+MULTILINE_CPP_IS_BRIEF = YES
+TAB_SIZE               = 4
+MARKDOWN_SUPPORT       = YES
+AUTOLINK_SUPPORT       = YES
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = NO

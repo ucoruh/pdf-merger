@@ -1,0 +1,33 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v2
+
+    - name: Restore NuGet packages
+      run: nuget restore PdfMerger.sln
+
+    - name: Build
+      run: msbuild PdfMerger.sln /p:Configuration=Release /p:Platform="Any CPU"
+
+    - name: Setup VSTest
+      uses: darenm/Setup-VSTest@v1.3
+
+    - name: Run Tests
+      run: vstest.console.exe tests\PdfMerger.Tests\bin\Release\PdfMerger.Tests.dll

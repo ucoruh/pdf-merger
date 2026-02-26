@@ -1,6 +1,6 @@
-﻿namespace PDF571
+namespace PdfMerger
 {
-    partial class MainFrm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,9 +39,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // btnRemove
-            // 
+            //
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.BackColor = System.Drawing.SystemColors.Control;
             this.btnRemove.Enabled = false;
@@ -53,9 +53,9 @@
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = false;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
+            //
             // btnAdd
-            // 
+            //
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.BackColor = System.Drawing.SystemColors.Control;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -66,9 +66,9 @@
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
+            //
             // btnMoveDown
-            // 
+            //
             this.btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMoveDown.BackColor = System.Drawing.SystemColors.Control;
             this.btnMoveDown.Enabled = false;
@@ -80,9 +80,9 @@
             this.btnMoveDown.Text = "Move Down";
             this.btnMoveDown.UseVisualStyleBackColor = false;
             this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
-            // 
+            //
             // btnMoveUp
-            // 
+            //
             this.btnMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMoveUp.BackColor = System.Drawing.SystemColors.Control;
             this.btnMoveUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -95,9 +95,9 @@
             this.btnMoveUp.Text = "Move Up";
             this.btnMoveUp.UseVisualStyleBackColor = false;
             this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
-            // 
+            //
             // btnMergeAll
-            // 
+            //
             this.btnMergeAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMergeAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnMergeAll.Enabled = false;
@@ -109,12 +109,12 @@
             this.btnMergeAll.Text = "Merge Sequential";
             this.btnMergeAll.UseVisualStyleBackColor = false;
             this.btnMergeAll.Click += new System.EventHandler(this.btnMerge_Click);
-            // 
+            //
             // listFiles
-            // 
+            //
             this.listFiles.AllowDrop = true;
-            this.listFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.listFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listFiles.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.listFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -126,9 +126,9 @@
             this.listFiles.TabIndex = 7;
             this.listFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.listFiles_DragDrop);
             this.listFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.listFiles_DragEnter);
-            // 
+            //
             // btnMergeADF
-            // 
+            //
             this.btnMergeADF.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMergeADF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnMergeADF.Enabled = false;
@@ -140,9 +140,9 @@
             this.btnMergeADF.Text = "Merge ADF Odd/Even Mix";
             this.btnMergeADF.UseVisualStyleBackColor = false;
             this.btnMergeADF.Click += new System.EventHandler(this.btnMergeADF_Click);
-            // 
+            //
             // btnUpdateThesis
-            // 
+            //
             this.btnUpdateThesis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUpdateThesis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnUpdateThesis.Enabled = false;
@@ -154,9 +154,9 @@
             this.btnUpdateThesis.Text = "Thesis Update";
             this.btnUpdateThesis.UseVisualStyleBackColor = false;
             this.btnUpdateThesis.Click += new System.EventHandler(this.btnUpdateThesis_Click);
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -164,10 +164,10 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(391, 21);
             this.label1.TabIndex = 15;
-            this.label1.Text = "*for Thesis Update 1-Thesis 2-Signatures 3-Decleration";
-            // 
+            this.label1.Text = "*for Thesis Update 1-Thesis 2-Signatures 3-Declaration";
+            //
             // label2
-            // 
+            //
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -176,9 +176,9 @@
             this.label2.Size = new System.Drawing.Size(220, 21);
             this.label2.TabIndex = 16;
             this.label2.Text = "*for ADF Merge 1-Odd 2-Even";
-            // 
-            // MainFrm
-            // 
+            //
+            // MainForm
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -194,7 +194,7 @@
             this.Controls.Add(this.btnMergeAll);
             this.Controls.Add(this.listFiles);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "MainFrm";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PDF Merger";
             this.ResumeLayout(false);
@@ -216,4 +216,3 @@
         private System.Windows.Forms.Label label2;
     }
 }
-

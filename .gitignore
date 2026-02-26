@@ -637,3 +637,20 @@ hs_err_pid*
 # Additional files built by Visual Studio
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,csharp,visualstudio,visualstudiocode,java
+
+### PDF Merger Project ###
+# MkDocs build output
+site/
+
+# Doxygen build output
+doxygen/output/
+
+# Test results
+tests/**/TestResults/
+
+# WiX intermediate files
+*.wixpdb
+*.wixobj
+
+# Claude Code
+.claude/
