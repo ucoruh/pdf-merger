@@ -8,6 +8,8 @@
 
 A Windows desktop application for merging PDF files with specialized support for **single-side ADF (Automatic Document Feeder) scanners**. Built with C# WinForms and [PDFsharp](http://www.pdfsharp.net/).
 
+> **[View Full Documentation](https://ucoruh.github.io/pdf-merger/)** | **[Download Latest Release](https://github.com/ucoruh/pdf-merger/releases/latest)**
+
 ## Features
 
 ### Sequential Merge

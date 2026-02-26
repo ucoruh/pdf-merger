@@ -1,0 +1,56 @@
+{% extends "main.html" %}
+{% block tabs %}
+  {{ super() }}
+  <style>
+    .md-header { position: initial; }
+    .md-main__inner { margin: 0; }
+    .md-content { display: none; }
+    @media screen and (min-width: 60em) {
+      .md-sidebar--secondary { display: none; }
+    }
+    @media screen and (min-width: 76.25em) {
+      .md-sidebar--primary { display: none; }
+    }
+  </style>
+  <section class="mdx-container">
+    <div class="md-grid md-typeset">
+      <div class="mdx-hero">
+        <div class="mdx-hero__image">
+          <img src="assets/logo.png" alt="PDF Merger" draggable="false">
+        </div>
+        <div class="mdx-hero__content">
+          <h1>PDF Merger</h1>
+          <p>{{ config.site_description }}</p>
+          <a href="{{ 'https://github.com/ucoruh/pdf-merger/releases/latest' | url }}" title="Download Latest Release" class="md-button md-button--primary">
+            Download
+          </a>
+          <a href="{{ 'getting-started/' | url }}" title="Getting Started" class="md-button">
+            Get Started
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="mdx-features">
+    <div class="md-grid md-typeset">
+      <div class="mdx-features__inner">
+        <div class="mdx-feature">
+          <h2>Sequential Merge</h2>
+          <p>Combine multiple PDF files into a single document. Pages are appended in the order you specify.</p>
+        </div>
+        <div class="mdx-feature">
+          <h2>ADF Scanner Support</h2>
+          <p>Interleave odd and even pages from single-side ADF scanner output into a properly ordered document.</p>
+        </div>
+        <div class="mdx-feature">
+          <h2>Thesis Update</h2>
+          <p>Insert signed signature and declaration pages into your thesis PDF at the correct positions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+{% block content %}{% endblock %}
+{% block footer %}
+  {{ super() }}
+{% endblock %}
