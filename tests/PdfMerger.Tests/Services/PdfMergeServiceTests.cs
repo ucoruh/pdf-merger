@@ -221,5 +221,260 @@ namespace PdfMerger.Tests.Services
         }
 
         #endregion
+
+        #region SplitPdf Tests
+
+        [Test]
+        public void SplitPdf_ValidInput_CreatesCorrectFiles()
+        {
+            string input = CreateTestPdf(10, "split_input");
+            string outputFolder = Path.Combine(_testDir, "split_output");
+
+            string[] result = PdfMergeService.SplitPdf(input, outputFolder, new[] { 3, 7 });
+
+            Assert.That(result.Length, Is.EqualTo(3));
+            Assert.That(GetPageCount(result[0]), Is.EqualTo(3));
+            Assert.That(GetPageCount(result[1]), Is.EqualTo(4));
+            Assert.That(GetPageCount(result[2]), Is.EqualTo(3));
+        }
+
+        [Test]
+        public void SplitPdf_SingleSplitPoint_CreatesTwoParts()
+        {
+            string input = CreateTestPdf(6, "split_single");
+            string outputFolder = Path.Combine(_testDir, "split_single_output");
+
+            string[] result = PdfMergeService.SplitPdf(input, outputFolder, new[] { 4 });
+
+            Assert.That(result.Length, Is.EqualTo(2));
+            Assert.That(GetPageCount(result[0]), Is.EqualTo(4));
+            Assert.That(GetPageCount(result[1]), Is.EqualTo(2));
+        }
+
+        [Test]
+        public void SplitPdf_NullFile_ThrowsArgumentException()
+        {
+            string outputFolder = Path.Combine(_testDir, "split_null");
+            Assert.Throws<ArgumentException>(() =>
+                PdfMergeService.SplitPdf(null, outputFolder, new[] { 3 }));
+        }
+
+        [Test]
+        public void SplitPdf_EmptySplitPoints_ThrowsArgumentException()
+        {
+            string input = CreateTestPdf(5, "split_empty");
+            string outputFolder = Path.Combine(_testDir, "split_empty_output");
+            Assert.Throws<ArgumentException>(() =>
+                PdfMergeService.SplitPdf(input, outputFolder, new int[0]));
+        }
+
+        [Test]
+        public void SplitPdf_PageNumberOutOfRange_ThrowsArgumentException()
+        {
+            string input = CreateTestPdf(5, "split_range");
+            string outputFolder = Path.Combine(_testDir, "split_range_output");
+            Assert.Throws<ArgumentException>(() =>
+                PdfMergeService.SplitPdf(input, outputFolder, new[] { 10 }));
+        }
+
+        [Test]
+        public void SplitPdf_NonExistentFile_ThrowsFileNotFoundException()
+        {
+            string fakeFile = Path.Combine(_testDir, "nonexistent.pdf");
+            string outputFolder = Path.Combine(_testDir, "split_fake_output");
+            Assert.Throws<FileNotFoundException>(() =>
+                PdfMergeService.SplitPdf(fakeFile, outputFolder, new[] { 3 }));
+        }
+
+        #endregion
+
+        #region ExtractPages Tests
+
+        [Test]
+        public void ExtractPages_ValidRange_ExtractsCorrectPages()
+        {
+            string input = CreateTestPdf(10, "extract_input");
+            string output = GetOutputPath("extracted.pdf");
+
+            PdfMergeService.ExtractPages(input, output, new[] { 1, 2, 3, 5, 8 });
+
+            Assert.That(File.Exists(output), Is.True);
+            Assert.That(GetPageCount(output), Is.EqualTo(5));
+        }
+
+        [Test]
+        public void ExtractPages_SinglePage_ExtractsOnePage()
+        {
+            string input = CreateTestPdf(5, "extract_single");
+            string output = GetOutputPath("extracted_single.pdf");
+
+            PdfMergeService.ExtractPages(input, output, new[] { 3 });
+
+            Assert.That(File.Exists(output), Is.True);
+            Assert.That(GetPageCount(output), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ExtractPages_AllPages_ExtractsAll()
+        {
+            string input = CreateTestPdf(4, "extract_all");
+            string output = GetOutputPath("extracted_all.pdf");
+
+            PdfMergeService.ExtractPages(input, output, new[] { 1, 2, 3, 4 });
+
+            Assert.That(File.Exists(output), Is.True);
+            Assert.That(GetPageCount(output), Is.EqualTo(4));
+        }
+
+        [Test]
+        public void ExtractPages_NullFile_ThrowsArgumentException()
+        {
+            string output = GetOutputPath();
+            Assert.Throws<ArgumentException>(() =>
+                PdfMergeService.ExtractPages(null, output, new[] { 1 }));
+        }
+
+        [Test]
+        public void ExtractPages_PageOutOfRange_ThrowsArgumentException()
+        {
+            string input = CreateTestPdf(5, "extract_range");
+            string output = GetOutputPath("extracted_range.pdf");
+            Assert.Throws<ArgumentException>(() =>
+                PdfMergeService.ExtractPages(input, output, new[] { 6 }));
+        }
+
+        [Test]
+        public void ExtractPages_EmptyPageList_ThrowsArgumentException()
+        {
+            string input = CreateTestPdf(5, "extract_empty");
+            string output = GetOutputPath("extracted_empty.pdf");
+            Assert.Throws<ArgumentException>(() =>
+                PdfMergeService.ExtractPages(input, output, new int[0]));
+        }
+
+        #endregion
+
+        #region RotatePages Tests
+
+        [Test]
+        public void RotatePages_90Degrees_RotatesAllPages()
+        {
+            string input = CreateTestPdf(3, "rotate_90");
+            string output = GetOutputPath("rotated_90.pdf");
+
+            PdfMergeService.RotatePages(input, output, 90);
+
+            Assert.That(File.Exists(output), Is.True);
+            Assert.That(GetPageCount(output), Is.EqualTo(3));
+
+            using (PdfDocument doc = PdfReader.Open(output, PdfDocumentOpenMode.Import))
+            {
+                for (int i = 0; i < doc.PageCount; i++)
+                {
+                    Assert.That(doc.Pages[i].Rotate, Is.EqualTo(90));
+                }
+            }
+        }
+
+        [Test]
+        public void RotatePages_180Degrees_RotatesAllPages()
+        {
+            string input = CreateTestPdf(2, "rotate_180");
+            string output = GetOutputPath("rotated_180.pdf");
+
+            PdfMergeService.RotatePages(input, output, 180);
+
+            Assert.That(File.Exists(output), Is.True);
+            using (PdfDocument doc = PdfReader.Open(output, PdfDocumentOpenMode.Import))
+            {
+                for (int i = 0; i < doc.PageCount; i++)
+                {
+                    Assert.That(doc.Pages[i].Rotate, Is.EqualTo(180));
+                }
+            }
+        }
+
+        [Test]
+        public void RotatePages_270Degrees_RotatesAllPages()
+        {
+            string input = CreateTestPdf(2, "rotate_270");
+            string output = GetOutputPath("rotated_270.pdf");
+
+            PdfMergeService.RotatePages(input, output, 270);
+
+            Assert.That(File.Exists(output), Is.True);
+            using (PdfDocument doc = PdfReader.Open(output, PdfDocumentOpenMode.Import))
+            {
+                for (int i = 0; i < doc.PageCount; i++)
+                {
+                    Assert.That(doc.Pages[i].Rotate, Is.EqualTo(270));
+                }
+            }
+        }
+
+        [Test]
+        public void RotatePages_InvalidAngle_ThrowsArgumentException()
+        {
+            string input = CreateTestPdf(2, "rotate_invalid");
+            string output = GetOutputPath("rotated_invalid.pdf");
+            Assert.Throws<ArgumentException>(() =>
+                PdfMergeService.RotatePages(input, output, 45));
+        }
+
+        [Test]
+        public void RotatePages_NullFile_ThrowsArgumentException()
+        {
+            string output = GetOutputPath();
+            Assert.Throws<ArgumentException>(() =>
+                PdfMergeService.RotatePages(null, output, 90));
+        }
+
+        #endregion
+
+        #region ParsePageRange Tests
+
+        [Test]
+        public void ParsePageRange_SimpleRange_ReturnsCorrectPages()
+        {
+            int[] result = PdfMergeService.ParsePageRange("1-3", 10);
+            Assert.That(result, Is.EqualTo(new[] { 1, 2, 3 }));
+        }
+
+        [Test]
+        public void ParsePageRange_MixedRangeAndSingle_ReturnsCorrectPages()
+        {
+            int[] result = PdfMergeService.ParsePageRange("1-3,5,8-10", 10);
+            Assert.That(result, Is.EqualTo(new[] { 1, 2, 3, 5, 8, 9, 10 }));
+        }
+
+        [Test]
+        public void ParsePageRange_SinglePage_ReturnsOnePage()
+        {
+            int[] result = PdfMergeService.ParsePageRange("5", 10);
+            Assert.That(result, Is.EqualTo(new[] { 5 }));
+        }
+
+        [Test]
+        public void ParsePageRange_OutOfRange_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+                PdfMergeService.ParsePageRange("1-15", 10));
+        }
+
+        [Test]
+        public void ParsePageRange_EmptyString_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+                PdfMergeService.ParsePageRange("", 10));
+        }
+
+        [Test]
+        public void ParsePageRange_InvalidFormat_ThrowsArgumentException()
+        {
+            Assert.Throws<ArgumentException>(() =>
+                PdfMergeService.ParsePageRange("abc", 10));
+        }
+
+        #endregion
     }
 }
