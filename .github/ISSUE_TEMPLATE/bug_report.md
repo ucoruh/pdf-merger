@@ -31,8 +31,8 @@ If applicable, add screenshots.
 ## Environment
 
 - OS: [e.g., Windows 11]
-- PDF Merger Version: [e.g., 2.0.0]
-- .NET Framework Version: [e.g., 4.8]
+- PDF Merger Version: [e.g., 3.0.0]
+- .NET Runtime: [e.g., self-contained / .NET 8]
 
 ## Additional Context
 
