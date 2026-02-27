@@ -9,24 +9,30 @@
 
 ## System Requirements
 
-- Windows 10 or later
-- .NET Framework 4.8 runtime (included in Windows 10 May 2019 Update and later)
+- Windows 10 or later (64-bit)
+- No additional runtime required (self-contained executable)
 
 ## Installation
 
-### Option 1: Download Release (Recommended)
+### Option 1: Installer (Recommended)
 
 1. Go to the [Releases](https://github.com/ucoruh/pdf-merger/releases/latest) page
-2. Download the latest `PdfMerger-vX.X.X.zip` archive
+2. Download `PdfMergerSetup-vX.X.X.exe`
+3. Run the installer and follow the wizard
+
+### Option 2: Portable ZIP
+
+1. Go to the [Releases](https://github.com/ucoruh/pdf-merger/releases/latest) page
+2. Download `PdfMerger-vX.X.X.zip`
 3. Extract the archive to a folder of your choice
 4. Run `PdfMerger.exe`
 
 !!! tip
     No installation required. Just extract and run.
 
-### Option 2: Build from Source
+### Option 3: Build from Source
 
-1. Install [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community/) with the **.NET desktop development** workload
+1. Install the [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 2. Clone the repository:
 
     ```bash
@@ -34,8 +40,11 @@
     cd pdf-merger
     ```
 
-3. Open `PdfMerger.sln` in Visual Studio
-4. Press `F5` to build and run
+3. Build and run:
+
+    ```bash
+    dotnet run --project src/PdfMerger/PdfMerger.csproj
+    ```
 
 ## First Use
 

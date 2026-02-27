@@ -152,7 +152,7 @@ namespace PdfMerger
                     try
                     {
                         mergeAction(dialog.FileName, files);
-                        Process.Start(dialog.FileName);
+                        Process.Start(new ProcessStartInfo(dialog.FileName) { UseShellExecute = true });
                     }
                     catch (ArgumentException ex)
                     {
@@ -219,7 +219,7 @@ namespace PdfMerger
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
 
-                        Process.Start(folderDialog.SelectedPath);
+                        Process.Start(new ProcessStartInfo(folderDialog.SelectedPath) { UseShellExecute = true });
                     }
                     catch (FormatException)
                     {
@@ -278,7 +278,7 @@ namespace PdfMerger
 
                         int[] pages = PdfMergeService.ParsePageRange(input, pageCount);
                         PdfMergeService.ExtractPages(inputFile, saveDialog.FileName, pages);
-                        Process.Start(saveDialog.FileName);
+                        Process.Start(new ProcessStartInfo(saveDialog.FileName) { UseShellExecute = true });
                     }
                     catch (ArgumentException ex)
                     {
@@ -317,7 +317,7 @@ namespace PdfMerger
                     {
                         string inputFile = (string)listFiles.Items[0];
                         PdfMergeService.RotatePages(inputFile, saveDialog.FileName, angle);
-                        Process.Start(saveDialog.FileName);
+                        Process.Start(new ProcessStartInfo(saveDialog.FileName) { UseShellExecute = true });
                     }
                     catch (ArgumentException ex)
                     {

@@ -6,7 +6,7 @@
 [![Latest Release](https://img.shields.io/github/v/release/ucoruh/pdf-merger)](https://github.com/ucoruh/pdf-merger/releases/latest)
 [![Documentation](https://img.shields.io/badge/docs-MkDocs-blue)](https://ucoruh.github.io/pdf-merger/)
 
-A Windows desktop application for merging, splitting, extracting, and rotating PDF files with specialized support for **single-side ADF (Automatic Document Feeder) scanners**. Built with C# WinForms and [PDFsharp](http://www.pdfsharp.net/).
+A Windows desktop application for merging, splitting, extracting, and rotating PDF files with specialized support for **single-side ADF (Automatic Document Feeder) scanners**. Built with C# WinForms on .NET 8 and [PDFsharp](http://www.pdfsharp.net/).
 
 > **[View Full Documentation](https://ucoruh.github.io/pdf-merger/)** | **[Download Latest Release](https://github.com/ucoruh/pdf-merger/releases/latest)**
 
@@ -50,15 +50,19 @@ Download the latest release from the [Releases](https://github.com/ucoruh/pdf-me
 
 ### Build from Source
 
-1. Install [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community/) with the **.NET desktop development** workload
+1. Install the [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (or Visual Studio 2022 with the **.NET desktop development** workload)
 2. Clone the repository:
 
    ```bash
    git clone https://github.com/ucoruh/pdf-merger.git
    ```
 
-3. Open `PdfMerger.sln` in Visual Studio
-4. Restore NuGet packages and build the solution
+3. Build and run:
+
+   ```bash
+   dotnet build PdfMerger.sln
+   dotnet run --project src/PdfMerger/PdfMerger.csproj
+   ```
 
 ## Usage
 
@@ -116,22 +120,21 @@ Download the latest release from the [Releases](https://github.com/ucoruh/pdf-me
 
 ### Prerequisites
 
-- Visual Studio 2022 Community Edition or later
-- .NET Framework 4.8 SDK
-- (Optional) WiX Toolset v3.11+ for building the installer
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (or Visual Studio 2022 with .NET desktop workload)
+- (Optional) [Inno Setup 6](https://jrsoftware.org/isinfo.php) for building the installer
 
 ### Project Structure
 
 ```text
 pdf-merger/
   src/
-    PdfMerger/              # Main WinForms application
+    PdfMerger/              # Main WinForms application (.NET 8)
       Services/             # PDF merge business logic
       MainForm.cs           # UI code
       Program.cs            # Entry point
-    PdfMergerSetup/         # WiX installer project
   tests/
     PdfMerger.Tests/        # NUnit unit tests
+  installer/                # Inno Setup installer script
   docs/                     # MkDocs documentation source
   doxygen/                  # Doxygen configuration
   .github/workflows/        # CI/CD pipelines
@@ -140,14 +143,14 @@ pdf-merger/
 ### Build Commands
 
 ```bash
-nuget restore PdfMerger.sln
-msbuild PdfMerger.sln /p:Configuration=Release
+dotnet restore PdfMerger.sln
+dotnet build PdfMerger.sln --configuration Release
 ```
 
 ### Run Tests
 
 ```bash
-dotnet test tests/PdfMerger.Tests/PdfMerger.Tests.csproj
+dotnet test PdfMerger.sln --configuration Release
 ```
 
 ## Documentation

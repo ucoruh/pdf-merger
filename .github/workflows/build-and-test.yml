@@ -14,20 +14,16 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v2
+    - name: Setup .NET 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
 
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v2
-
-    - name: Restore NuGet packages
-      run: nuget restore PdfMerger.sln
+    - name: Restore dependencies
+      run: dotnet restore PdfMerger.sln
 
     - name: Build
-      run: msbuild PdfMerger.sln /p:Configuration=Release /p:Platform="Any CPU"
-
-    - name: Setup VSTest
-      uses: darenm/Setup-VSTest@v1.3
+      run: dotnet build PdfMerger.sln --configuration Release --no-restore
 
     - name: Run Tests
-      run: vstest.console.exe tests\PdfMerger.Tests\bin\Release\PdfMerger.Tests.dll
+      run: dotnet test PdfMerger.sln --configuration Release --no-build --verbosity normal

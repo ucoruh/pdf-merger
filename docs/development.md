@@ -2,23 +2,21 @@
 
 ## Prerequisites
 
-- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community/) Community Edition or later
-- .NET Framework 4.8 SDK (included with VS 2022)
-- (Optional) [WiX Toolset v3.11+](https://wixtoolset.org/releases/) for building the installer
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (or [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community/) with the .NET desktop development workload)
+- (Optional) [Inno Setup 6](https://jrsoftware.org/isinfo.php) for building the installer
 
 ## Building
 
 ### Using Visual Studio
 
 1. Open `PdfMerger.sln`
-2. Right-click the solution and select **Restore NuGet Packages**
-3. Build the solution (`Ctrl+Shift+B`)
+2. Build the solution (`Ctrl+Shift+B`)
 
 ### Using Command Line
 
 ```bash
-nuget restore PdfMerger.sln
-msbuild PdfMerger.sln /p:Configuration=Release
+dotnet restore PdfMerger.sln
+dotnet build PdfMerger.sln --configuration Release
 ```
 
 ## Architecture
@@ -28,15 +26,16 @@ msbuild PdfMerger.sln /p:Configuration=Release
 ```text
 pdf-merger/
   src/
-    PdfMerger/              # Main WinForms application
+    PdfMerger/              # Main WinForms application (.NET 8)
       Services/
         PdfMergeService.cs  # Core PDF merging logic (static methods)
       MainForm.cs           # UI event handlers
       MainForm.Designer.cs  # Auto-generated UI layout
       Program.cs            # Application entry point
-    PdfMergerSetup/         # WiX MSI installer project
   tests/
     PdfMerger.Tests/        # NUnit unit tests
+  installer/
+    PdfMergerSetup.iss      # Inno Setup installer script
 ```
 
 ### Design Principles
@@ -60,7 +59,7 @@ pdf-merger/
 ### Running Tests
 
 ```bash
-dotnet test tests/PdfMerger.Tests/PdfMerger.Tests.csproj
+dotnet test PdfMerger.sln --configuration Release
 ```
 
 ### Test Coverage
