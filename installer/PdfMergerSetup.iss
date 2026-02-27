@@ -2,7 +2,9 @@
 ; Replaces WiX MSI installer for .NET 8 self-contained deployment
 
 #define MyAppName "PDF Merger"
-#define MyAppVersion "3.0.0"
+#ifndef MyAppVersion
+  #define MyAppVersion "3.0.0"
+#endif
 #define MyAppPublisher "Ugur CORUH"
 #define MyAppURL "https://ucoruh.github.io/pdf-merger/"
 #define MyAppExeName "PdfMerger.exe"

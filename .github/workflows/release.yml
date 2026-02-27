@@ -21,11 +21,18 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
+    - name: Extract version from tag
+      id: version
+      run: |
+        $version = "${{ github.ref_name }}".TrimStart("v")
+        echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+      shell: pwsh
+
     - name: Restore dependencies
       run: dotnet restore PdfMerger.sln
 
     - name: Build
-      run: dotnet build PdfMerger.sln --configuration Release --no-restore
+      run: dotnet build PdfMerger.sln --configuration Release --no-restore -p:Version=${{ steps.version.outputs.VERSION }}
 
     - name: Run Tests
       run: dotnet test PdfMerger.sln --configuration Release --no-build --verbosity normal
@@ -39,6 +46,7 @@ jobs:
         -p:PublishSingleFile=true
         -p:IncludeNativeLibrariesForSelfExtract=true
         -p:EnableCompressionInSingleFile=true
+        -p:Version=${{ steps.version.outputs.VERSION }}
         --output publish
 
     - name: Create Release Archive (ZIP)
@@ -53,7 +61,7 @@ jobs:
 
     - name: Build Inno Setup Installer
       run: |
-        & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer\PdfMergerSetup.iss
+        & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" "/DMyAppVersion=${{ steps.version.outputs.VERSION }}" installer\PdfMergerSetup.iss
       shell: pwsh
 
     - name: Rename installer with version
