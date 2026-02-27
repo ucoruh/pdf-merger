@@ -16,46 +16,58 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v2
+    - name: Setup .NET 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
 
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v2
+    - name: Restore dependencies
+      run: dotnet restore PdfMerger.sln
 
-    - name: Ensure WiX Toolset is available
+    - name: Build
+      run: dotnet build PdfMerger.sln --configuration Release --no-restore
+
+    - name: Run Tests
+      run: dotnet test PdfMerger.sln --configuration Release --no-build --verbosity normal
+
+    - name: Publish self-contained
+      run: >
+        dotnet publish src/PdfMerger/PdfMerger.csproj
+        --configuration Release
+        --runtime win-x64
+        --self-contained true
+        -p:PublishSingleFile=true
+        -p:IncludeNativeLibrariesForSelfExtract=true
+        -p:EnableCompressionInSingleFile=true
+        --output publish
+
+    - name: Create Release Archive (ZIP)
       run: |
-        choco install wixtoolset -y --no-progress --force
-        $wixDir = Get-ChildItem "C:\Program Files (x86)\WiX Toolset v3*" -Directory | Sort-Object Name -Descending | Select-Object -First 1
-        echo "$($wixDir.FullName)\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        Compress-Archive -Path publish\* -DestinationPath PdfMerger-${{ github.ref_name }}.zip
       shell: pwsh
 
-    - name: Restore NuGet packages
-      run: nuget restore PdfMerger.sln
-
-    - name: Build Release
-      run: msbuild PdfMerger.sln /p:Configuration=Release /p:Platform="Any CPU"
-
-    - name: Build MSI Installer
-      run: msbuild src\PdfMergerSetup\PdfMergerSetup.wixproj /p:Configuration=Release /p:Platform=x86 /p:BuildProjectReferences=false
-
-    - name: Create Release Archive
+    - name: Install Inno Setup
       run: |
-        mkdir release-artifacts
-        copy src\PdfMerger\bin\Release\PdfMerger.exe release-artifacts\
-        copy src\PdfMerger\bin\Release\PdfMerger.exe.config release-artifacts\
-        copy src\PdfMerger\bin\Release\PdfSharp.dll release-artifacts\
-        Compress-Archive -Path release-artifacts\* -DestinationPath PdfMerger-${{ github.ref_name }}.zip
+        choco install innosetup -y --no-progress
+      shell: pwsh
 
-    - name: Rename MSI with version
+    - name: Build Inno Setup Installer
       run: |
-        copy src\PdfMergerSetup\bin\Release\PdfMergerSetup.msi PdfMergerSetup-${{ github.ref_name }}.msi
+        & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" installer\PdfMergerSetup.iss
+      shell: pwsh
+
+    - name: Rename installer with version
+      run: |
+        $issOutput = Get-ChildItem installer\output\*.exe | Select-Object -First 1
+        Copy-Item $issOutput.FullName "PdfMergerSetup-${{ github.ref_name }}.exe"
+      shell: pwsh
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
         files: |
           PdfMerger-${{ github.ref_name }}.zip
-          PdfMergerSetup-${{ github.ref_name }}.msi
+          PdfMergerSetup-${{ github.ref_name }}.exe
         generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

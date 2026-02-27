@@ -648,9 +648,15 @@ doxygen/output/
 # Test results
 tests/**/TestResults/
 
-# WiX intermediate files
+# WiX intermediate files (legacy)
 *.wixpdb
 *.wixobj
+
+# Inno Setup output
+installer/output/
+
+# dotnet publish output
+publish/
 
 # Claude Code
 .claude/
