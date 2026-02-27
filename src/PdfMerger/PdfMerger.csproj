@@ -9,8 +9,6 @@
     <ApplicationIcon>pdfmergerlogo.ico</ApplicationIcon>
     <StartupObject>PdfMerger.Program</StartupObject>
     <Version>3.0.0</Version>
-    <AssemblyVersion>3.0.0.0</AssemblyVersion>
-    <FileVersion>3.0.0.0</FileVersion>
     <Title>PDF Merger Utility</Title>
     <Description>PDF Merger - Split, Extract, Rotate, and Merge PDF files</Description>
     <Company>Recep Tayyip Erdogan University</Company>
